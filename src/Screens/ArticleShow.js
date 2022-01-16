@@ -27,7 +27,7 @@ const ArticleShow = () => {
 	}
 	return (
 		<div>
-			<Article {...article} />
+			<Article {...article} show />
 		</div>
 	)
 }

@@ -5,7 +5,8 @@ export const ArticleContext = createContext({
 	pageCount: 0,
 	articleLoading: true,
 	articles: [],
-	getArticles: () => {}
+	getArticles: () => {},
+	setArticles: () => []
 })
 
 export const ArticleProvider = (props) => {
@@ -28,5 +29,5 @@ export const ArticleProvider = (props) => {
 		getArticles(token)
 	}, [])
 
-	return <ArticleContext.Provider value={{ articles, getArticles, pageCount, articleLoading }}>{props.children}</ArticleContext.Provider>
+	return <ArticleContext.Provider value={{ articles, getArticles, pageCount, articleLoading, setArticles }}>{props.children}</ArticleContext.Provider>
 }

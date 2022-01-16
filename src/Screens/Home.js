@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import ReactPaginate from "react-paginate"
 import Article from "../Components/Article"
 import { ArticleContext } from "../Providers/ArticleProvider"
@@ -6,7 +6,7 @@ import styled from "styled-components"
 import Loading from "../Components/Loading"
 
 const Home = () => {
-	const context = React.useContext(ArticleContext)
+	const context = useContext(ArticleContext)
 	let { articles, getArticles, pageCount, articleLoading } = context
 	const token = localStorage.getItem("token")
 	const limit = 10

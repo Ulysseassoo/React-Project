@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+import { MapContainer, TileLayer, Popup } from "react-leaflet"
 import ReactLeafletDriftMarker from "react-leaflet-drift-marker"
 import { UserContext } from "../Providers/UserProvider"
 import { MapContext } from "../Providers/MapProvider"
@@ -10,14 +10,12 @@ const Map = () => {
 	const mapContext = useContext(MapContext)
 	const { positions } = mapContext
 	const { userLoading } = context
-	console.log(userLoading)
 	if (userLoading) {
 		return <></>
 	}
 	if (positions.length === 0) {
 		return <Container>...Loading the map</Container>
 	}
-	console.log(positions)
 	return (
 		<Container>
 			<MapContainer center={[48.8, 2.26]} zoom={10} scrollWheelZoom={false} style={{ height: "100%" }}>

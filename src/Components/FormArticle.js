@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useForm } from "react-hook-form"
 import styled from "styled-components"
+import { ArticleContext } from "../Providers/ArticleProvider"
 import { createArticle, getAllArticleCategories } from "../Services/APIs"
 import FormButton from "./FormButton"
 
 const FormArticle = () => {
 	const [articleCategories, setArticleCategories] = useState([])
+	const context = useContext(ArticleContext)
+	const { setArticles, articles } = context
 	const token = localStorage.getItem("token")
 
 	const getCategories = async (token) => {
@@ -26,8 +29,10 @@ const FormArticle = () => {
 		formState: { errors }
 	} = useForm()
 	const onSubmit = async (form) => {
+		console.log(form)
 		try {
 			let { data } = await createArticle(form, token)
+			setArticles([data, ...articles])
 			console.log(data)
 		} catch (error) {
 			console.log(error)
@@ -49,7 +54,6 @@ const FormArticle = () => {
 					)
 				})}
 			</select>
-
 			<FormButton content="Create" />
 		</Form>
 	)

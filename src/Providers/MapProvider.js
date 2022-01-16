@@ -9,17 +9,14 @@ export const MapContext = createContext({
 export const MapProvider = (props) => {
 	const [positions, setPositions] = useState({})
 	const ENDPOINT = "http://edu.project.etherial.fr/"
-	// const emitPosition = () => {
-	// 	const socket = socketIOClient(ENDPOINT)
-	// 	socket.emit("update_position", {
-	// 		point_lat: 49.56,
-	// 		point_lon: 2.587
-	// 	})
-	// }
 	useEffect(() => {
 		const socket = socketIOClient(ENDPOINT)
 		socket.on("positions", (data) => {
 			setPositions(data.data)
+		})
+		socket.emit("update_position", {
+			point_lat: 49.56,
+			point_lon: 2.587
 		})
 		return () => {
 			socket.off("positions")
