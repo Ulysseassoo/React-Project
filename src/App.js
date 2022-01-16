@@ -10,6 +10,7 @@ import ArticleShow from "./Screens/ArticleShow"
 import NewArticle from "./Screens/NewArticle"
 import Map from "./Components/Map"
 import styled from "styled-components"
+import { MapProvider } from "./Providers/MapProvider"
 
 function App() {
 	return (
@@ -18,17 +19,19 @@ function App() {
 			<BrowserRouter>
 				<UserProvider>
 					<ArticleProvider>
-						<Container>
-							<Navbar />
-							<Routes>
-								<Route path="/" element={<Home />} />
-								<Route path="/login" element={<Login />} />
-								<Route path="/register" element={<Register />} />
-								<Route path="/article/:id" element={<ArticleShow />} />
-								<Route path="/article/new" element={<NewArticle />} />
-							</Routes>
-							<Map />
-						</Container>
+						<MapProvider>
+							<Container>
+								<Navbar />
+								<Routes>
+									<Route path="/" element={<Home />} />
+									<Route path="/login" element={<Login />} />
+									<Route path="/register" element={<Register />} />
+									<Route path="/article/:id" element={<ArticleShow />} />
+									<Route path="/article/new" element={<NewArticle />} />
+								</Routes>
+								<Map />
+							</Container>
+						</MapProvider>
 					</ArticleProvider>
 				</UserProvider>
 			</BrowserRouter>

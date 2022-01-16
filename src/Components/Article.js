@@ -31,6 +31,7 @@ const Article = ({ id, title, content, status, ArticleCategory, created_at, upda
 	}
 	return (
 		<Container>
+			<Numero>#{id}</Numero>
 			<Title>{title}</Title>
 			<Space>
 				<Text>Content : {content}</Text>
@@ -58,6 +59,14 @@ const Container = styled.div`
 		css`
 			width: 100%;
 		`}
+`
+
+const Numero = styled.div`
+	font-size: 1.1rem;
+	padding-bottom: 0.4rem;
+	font-style: italic;
+	font-weight: bold;
+	color: var(--accent-color);
 `
 
 const Wrapper = styled.div`

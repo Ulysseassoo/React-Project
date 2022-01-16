@@ -29,11 +29,9 @@ const FormArticle = () => {
 		formState: { errors }
 	} = useForm()
 	const onSubmit = async (form) => {
-		console.log(form)
 		try {
 			let { data } = await createArticle(form, token)
 			setArticles([data, ...articles])
-			console.log(data)
 		} catch (error) {
 			console.log(error)
 		}
