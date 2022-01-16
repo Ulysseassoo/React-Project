@@ -15,18 +15,15 @@ const Home = () => {
 	if (articleLoading) {
 		return <Loading />
 	}
-	console.log(context)
 
 	const handlePageChange = (selectedObject) => {
 		setCurrentPage(selectedObject.selected)
-		setOffset(selectedObject.selected * 11)
-		handleFetch(selectedObject.selected)
+		setOffset(selectedObject.selected * 10)
+		handleFetch(selectedObject.selected * 10)
 	}
-	const handleFetch = () => {
+	const handleFetch = (offset) => {
 		getArticles(token, limit, offset)
 	}
-	console.log(currentPage)
-	console.log(articles)
 	return (
 		<Container>
 			<Flex>
@@ -34,20 +31,25 @@ const Home = () => {
 					return <Article {...article} key={article.id} />
 				})}
 			</Flex>
-			<ReactPaginate
-				pageCount={pageCount}
-				pageRange={1}
-				marginPagesDisplayed={5}
-				onPageChange={handlePageChange}
-				containerClassName={"container"}
-				previousLinkClassName={"page"}
-				breakClassName={"page"}
-				nextLinkClassName={"page"}
-				pageClassName={"page"}
-				disabledClassNae={"disabled"}
-				activeClassName={"active"}
-				style={{ display: "flex", gap: "2rem", justifyContent: "center" }}
-			/>
+			<PaginationContainer>
+				<ReactPaginate
+					pageCount={pageCount}
+					pageRange={1}
+					marginPagesDisplayed={5}
+					onPageChange={handlePageChange}
+					containerClassName={"container"}
+					previousLinkClassName={"page"}
+					breakClassName={"page"}
+					nextLinkClassName={"page"}
+					pageClassName={"page"}
+					disabledClassNae={"disabled"}
+					activeClassName={"active"}
+					nextLabel=">"
+					previousLabel="<"
+					renderOnZeroPageCount={null}
+					style={{ display: "flex", gap: "2rem", justifyContent: "center" }}
+				/>
+			</PaginationContainer>
 		</Container>
 	)
 }
@@ -63,6 +65,36 @@ const Flex = styled.div`
 	gap: 2rem;
 	height: 350px;
 	overflow-y: scroll;
+`
+
+const PaginationContainer = styled.div`
+	width: 500px;
+	margin: auto;
+	& .container {
+		display: flex;
+		justify-content: space-evenly;
+		list-style: none;
+		gap: 0.5rem;
+		& li {
+			cursor: pointer;
+			padding: 0.2rem;
+			background-color: var(--primary-color);
+			color: white;
+			border-radius: 0.3rem;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			transition: 0.3s ease;
+
+			&.disabled {
+				background-color: gray;
+			}
+			&.active {
+				background-color: var(--accent-color);
+				scale: 1.25;
+			}
+		}
+	}
 `
 
 export default Home

@@ -40,8 +40,8 @@ const Map = () => {
 }
 
 const Container = styled.div`
-	height: 300px;
-	width: 300px;
+	height: 250px;
+	width: 450px;
 	border: 1px solid black;
 	position: fixed;
 	bottom: 5px;
